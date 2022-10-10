@@ -1,0 +1,136 @@
+.main-image-panel {
+  flex: 1 1 auto;
+  @include flex-column-center;
+  justify-content: center;
+  background-image: radial-gradient(
+    circle at 76% 24%,
+    #fff,
+    #f6f7ff,
+    #fefeff,
+    #fff 0%,
+    #f2f4ff 73%
+  );
+}
+
+.main-content-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 0 0 44.429rem;
+  width: 44.429rem; // 622px
+  padding: $global-space;
+  box-shadow: inset 6px 0 8px -6px rgba(0, 0, 0, 0.18);
+  font-size: 1.071rem; // 15px
+
+  &.login-content {
+    align-items: center;
+    justify-content: center;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .summary {
+    margin-bottom: 4.8em; // 72px
+    padding: 2.857em 2.143em; // 40px 30px
+    border-radius: $border-radius-box;
+    background-color: #f5f5f7;
+
+    h3 {
+      margin-bottom: 1em;
+      font-size: 1.714rem; // 24px
+    }
+
+    p {
+      line-height: 1.6em;
+    }
+
+    .information {
+      margin-top: 1.6em; // 24px
+      .title {
+        margin-bottom: 0.4em; // 6px
+        font-weight: 700;
+      }
+      .emphasis {
+        color: $color-primary;
+        text-decoration: underline;
+      }
+    }
+  }
+  .tutorial {
+    h3 {
+      margin-bottom: 0.833em; // 20px
+      font-size: 1.714rem; // 24px
+    }
+    p {
+      margin-bottom: 1.067em; // 16px
+    }
+
+    li {
+      padding: 2.857em 2.143em; // 40px 30px
+      border: {
+        width: 1px;
+        style: solid;
+        color: $color-border-form;
+        radius: $border-radius-box;
+      }
+      &:not(:first-child) {
+        margin-top: 0.8em; // 12px
+      }
+    }
+  }
+
+  .login {
+    @include flex-column;
+    width: 28.571rem; // 400px
+    height: 30.714rem; // 430px
+
+    form,
+    .form-box,
+    .inline-group-box,
+    .btn,
+    .error-box {
+      width: 100%;
+    }
+
+    h3 {
+      margin-bottom: 1.867em; // 56px
+      font-size: 2.143rem; // 30px
+    }
+
+    label {
+      font-size: 0.929rem; // 13px
+    }
+
+    &-input {
+      label {
+        font-family: 'Youandi';
+      }
+      input {
+        height: 3.429rem; // 48px
+        margin-top: 0.571em; // 8px
+        background-color: #f5f5f7;
+      }
+      li:not(:first-child) {
+        margin-top: 1.714em; // 24px
+      }
+    }
+    .login-mpass,
+    .btn {
+      margin-top: 1.429em; // 20px
+    }
+    .btn {
+      height: 4rem; // 56px
+      font-size: 1.071rem; // 15px
+    }
+    .error {
+      &-box {
+        margin-top: 0.857em; // 12px
+      }
+      &-message {
+        font-size: 0.929rem; // 13px
+      }
+    }
+  }
+}

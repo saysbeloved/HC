@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - 계정 관리</title>
+    <script defer src="./../../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../../assets/scripts/jquery-ui.min.js"></script>
+
+    <script type="module">
+      import './../../assets/scripts/tui-date-picker.min.js';
+      import {
+        renderGrid,
+        CustomGridAnchorCell,
+      } from './../../assets/scripts/grid.js';
+      import './../../assets/scripts/forms.js';
+
+      {
+        const data = Array.from({ length: 15 }, (v, i) => ({
+          num: i + 1,
+          userId: '202208',
+          userName: '홍*동',
+          userClassification: 'Admin',
+          accountState: '',
+          departmentName: '기획4팀',
+          mobile: '010-123-4567',
+          email: 'hcc3ma@hcs.com',
+          registDate: '2022-07-22 13:00:23',
+          loginDate: '2022-08-20 09:00:36',
+        }));
+
+        renderGrid('grid', {
+          data,
+          header: {
+            height: 36,
+          },
+          columns: [
+            {
+              name: 'num',
+              header: 'No',
+              type: 'number',
+              width: 100,
+              align: 'center',
+            },
+            {
+              name: 'userId',
+              header: 'ID',
+              width: 150,
+              align: 'center',
+              renderer: {
+                type: CustomGridAnchorCell,
+                options: {
+                  linker: (row) => `account-modify.html?id=${row.userId}`,
+                },
+              },
+            },
+            {
+              name: 'userName',
+              header: '사용자명',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'userClassification',
+              header: '사용자 구분',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'accountState',
+              header: '계정 상태',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'departmentName',
+              header: '부서명',
+              width: 200,
+              align: 'center',
+            },
+            {
+              name: 'mobile',
+              header: '휴대전화',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'email',
+              header: '이메일',
+              minWidth: 250,
+              align: 'center',
+            },
+            {
+              name: 'registDate',
+              header: '등록 일시',
+              width: 200,
+              align: 'center',
+            },
+            {
+              name: 'loginDate',
+              header: '최종 로그인 일시',
+              width: 200,
+              align: 'center',
+            },
+          ],
+        });
+      }
+    </script>
+
+    <link rel="stylesheet" href="./../../assets/styles/style.css" />
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <h1><a href="./../../html/index.html">3층 마케팅 자동화</a></h1>
+      <nav>
+        <ul class="menu">
+          <li>
+            <a href="./../../html/3f-gift/closing-rules.html">3층 선물</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-gift/closing-rules.html"
+                      >자동마감 룰 등록</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+              >3층 붐업</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+                      >붐업 대상자 추출</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="current">
+            <a href="./../../html/mypage/boomup-targets.html">마이 페이지</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/mypage/boomup-targets.html"
+                      >붐업 대상자 내역</a
+                    >
+                  </li>
+                  <li class="current">
+                    <a href="./../../html/mypage/accounts.html">계정 관리</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/dashboard/3f-gift-states.html"
+              >성과 대시보드</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/dashboard/3f-gift-states.html"
+                      >3층 선물 현황</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- sub-menu background 처리 -->
+      <div class="sub-menu-bg">
+        <div></div>
+      </div>
+      <!-- //sub-menu background 처리 -->
+      <div class="user">
+        <ul class="user-info">
+          <li class="user-info-name">김*희 님</li>
+          <li class="user-info-time">00분 00초</li>
+        </ul>
+        <button type="button" class="btn logout">로그아웃</button>
+      </div>
+    </header>
+    <!-- //header -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb">
+      <ol>
+        <li>
+          <a href="./../../html/index.html" title="Home"><span>홈</span></a>
+        </li>
+        <li>
+          <a href="./../../html/mypage/accounts.html"
+            ><span>마이 페이지</span></a
+          >
+        </li>
+        <li>계정 관리</li>
+      </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- section -->
+    <section>
+      <h2>계정 관리</h2>
+      <!-- search-box -->
+      <div class="search-box">
+        <ul>
+          <li class="col-4">
+            <label for="userClassification">사용자 구분</label>
+            <select
+              id="userClassification"
+              name="userClassification"
+              class="form-select"
+            >
+              <option value="admin" selected>Admin</option>
+              <option value="front">Front</option>
+            </select>
+          </li>
+          <li class="col-4">
+            <label for="userId">ID</label>
+            <input id="userId" type="text" placeholder="4글자 이상 입력" />
+          </li>
+          <li class="col-4">
+            <label for="userName">사용자명</label>
+            <input id="userName" type="text" placeholder="2글자 이상 입력" />
+          </li>
+          <li class="tools">
+            <button class="btn icon-with-24 search">조회</button>
+          </li>
+        </ul>
+      </div>
+      <!-- //search-box -->
+
+      <!-- grid-area -->
+      <div class="grid-area">
+        <div class="grid-area-header">
+          <div class="grid-area-title">
+            <h3>계정 리스트</h3>
+            <span class="total">(전체<span class="num">82</span>개)</span>
+          </div>
+
+          <!-- grid-buttons -->
+          <div class="inline-group-box">
+            <button class="btn outline icon-with-24 download">
+              엑셀 다운로드
+            </button>
+          </div>
+          <!-- //grid-buttons -->
+        </div>
+        <div id="grid"></div>
+      </div>
+      <!-- //grid-area -->
+    </section>
+    <!-- //section -->
+  </body>
+</html>

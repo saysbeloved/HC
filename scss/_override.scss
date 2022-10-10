@@ -1,0 +1,684 @@
+/* override */
+
+// jQuery
+.ui-widget {
+  color: $color-text-default;
+  font: {
+    size: inherit;
+    family: 'NanumGothic', 'Malgun Gothic', sans-serif;
+  }
+}
+
+.ui-button {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+
+  .ui-icon {
+    &.ui-icon-triangle-1-s {
+      width: 0.857em;
+      height: 0.857em;
+      &::before {
+        $size: 0.429em; // 6px
+        @include pseudo-before;
+        top: calc(50% - (#{$size} / 2));
+        left: calc(#{$size} / 2);
+        width: $size;
+        height: $size;
+        border: {
+          width: 0.077em 0.077em 0 0; // 1px
+          style: solid;
+          color: $color-deep;
+        }
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
+
+.ui-button .ui-icon,
+.ui-button:hover .ui-icon,
+.ui-button:focus .ui-icon {
+  background-image: none; // image-path('ui-icons_777777_256x240.png');
+}
+.ui-state-active .ui-icon,
+.ui-button:active .ui-icon {
+  background-image: none; // image-path('ui-icons_777777_256x240.png');
+}
+
+// jQuery - select
+.ui-selectmenu-button.ui-button {
+  @include form-style-search-box;
+  &.small {
+    @include form-style;
+  }
+  background-color: $color-light;
+  &:focus,
+  &:active {
+    border-color: $color-primary;
+  }
+  &:active {
+    color: inherit;
+  }
+}
+
+.ui-selectmenu-menu {
+  &.small {
+    font-size: 0.929rem; // 13px
+  }
+
+  &.ui-selectmenu-open {
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+  }
+
+  .ui-menu {
+    padding: {
+      top: 0.571em; // 8px
+      bottom: 0.571em; // 8px
+    }
+    border: {
+      color: $color-border-form;
+      radius: $border-radius;
+    }
+    .ui-menu-item {
+      position: relative;
+      padding: 0.571em 0.857em; // 8px 12px
+
+      $check-height: 0.714rem; // 10px
+      $check-width: 0.429rem; // 6px
+
+      &::after {
+        @include pseudo-before;
+        top: 1.071rem; // 15px
+        right: 1.286rem; // 18px
+        width: $check-width;
+        height: $check-height;
+        border: {
+          right: 0.143rem solid $color-light; // 2px
+          top: 0.143rem solid $color-light;
+          color: $color-primary;
+          radius: 0.179rem; // 2.5px
+        }
+        transform-origin: left top;
+        opacity: 0;
+      }
+
+      &:hover::after {
+        animation: checkmark 0.8s ease 1 forwards;
+        transform: scaleX(-1) rotate(135deg);
+      }
+
+      .ui-menu-item-wrapper {
+        @include ellipsis;
+        padding: 0;
+        padding-right: 1.429em; // 20px
+        color: #848485;
+
+        &.ui-state-active {
+          border-color: transparent;
+          background-color: $color-light;
+          color: $color-text-default;
+        }
+      }
+
+      &::marker {
+        @include hidden;
+      }
+
+      // checkmark
+      @keyframes checkmark {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 1;
+        }
+        20% {
+          width: $check-width;
+          height: 0;
+          opacity: 1;
+        }
+        40% {
+          width: $check-width;
+          height: $check-height;
+          opacity: 1;
+        }
+        100% {
+          width: $check-width;
+          height: $check-height;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+// jQuery - progressbar
+.ui-progressbar {
+  &.ui-widget.ui-widget-content {
+    height: 2.286rem; // 32px
+    border: {
+      width: 0;
+      radius: $border-radius;
+    }
+    background-color: #e5e5e5;
+
+    .ui-progressbar-value {
+      margin: 0;
+      &.ui-widget-header {
+        border: 0;
+        background-image: linear-gradient(to left, #01c2db, #01d2bd, #00e49b);
+      }
+    }
+  }
+}
+
+
+// toast ui
+// tui-datepicker
+.tui-datepicker,
+.tui-grid-datepicker {
+  border: 0 none;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  font-family: 'Youandi';
+  letter-spacing: 0;
+  z-index: 999;
+
+  &-input {
+    height: auto;
+    border: 0 none;
+    input {
+      padding-right: 2.571em; // 36px
+      color: $color-text-default;
+      font-size: inherit;
+      line-height: inherit;
+    }
+    .tui-ico-date,
+    + .tui-grid-date-icon {
+      $size: 1.714em; // 24px
+      @include icon('icon-calendar.png', $size);
+      top: calc(50% - (#{$size} / 2));
+      width: $size;
+      height: $size;
+      margin: 0;
+      cursor: pointer;
+    }
+    + .tui-grid-date-icon {
+      right: 8px;
+    }
+  }
+
+  .tui-calendar {
+    border-radius: $border-radius;
+
+    .tui-calendar-header {
+      margin: 0 20px;
+      border-color: #e1e1e4;
+      font-family: 'NanumGothic', 'Malgun Gothic';
+
+      .tui-calendar-title,
+      .tui-calendar-title-month {
+        font: {
+          size: 1.429rem; // 20px
+          weight: 700;
+        }
+      }
+
+      .tui-calendar-btn-next-month,
+      .tui-calendar-btn-prev-month {
+        $size: 24px;
+        width: $size;
+        height: $size;
+        top: calc(50% - #{$size / 2});
+        border-radius: $border-round;
+        background-color: $color-light;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+        font-size: 0;
+        &::after {
+          @include icon-only('arrow-single.png', 12px);
+          top: calc(50% - 6px);
+          left: calc(50% - 6px);
+          margin: 0;
+        }
+      }
+      .tui-calendar-btn-next-month {
+        &::after {
+          transform: rotate(180deg);
+        }
+      }
+
+      .tui-hidden {
+        &.tui-calendar-btn-next-month,
+        &.tui-calendar-btn-prev-month {
+          display: block;
+          cursor: default;
+          &::after {
+            opacity: 0.3;
+          }
+        }
+      }
+
+      .tui-calendar-header-info {
+        display: none;
+      }
+    }
+
+    .tui-calendar-btn {
+      background-color: transparent;
+    }
+
+    .tui-calendar-body {
+      margin: 0 20px 20px;
+      .tui-calendar-body-inner {
+        font: {
+          size: 0.929rem; // 13px
+          weight: 600;
+        }
+
+        .tui-calendar-body-header {
+          th {
+            color: #848485;
+            font-size: 0.786rem; // 11px
+          }
+        }
+        .tui-calendar-week {
+          th,
+          td {
+            height: 33px;
+          }
+        }
+        .tui-is-selectable {
+          color: $color-text-default;
+          transition: all 0.3s ease;
+          &:hover {
+            border-radius: $border-radius;
+            background-color: rgba(75, 116, 255, 0.15);
+          }
+        }
+        .tui-calendar-sun {
+          color: $color-sunday;
+        }
+        .tui-is-blocked {
+          color: #cccccf;
+        }
+        .tui-is-selectable.tui-is-selected {
+          border-radius: $border-radius;
+          background-color: $color-primary;
+          color: $color-light;
+        }
+      }
+    }
+    &.tui-calendar-month,
+    &.tui-calendar-year {
+      .tui-calendar-body {
+        margin: 20px auto;
+      }
+    }
+  }
+}
+
+.tui-datepicker-input.tui-has-focus .tui-ico-date,
+.tui-datepicker-selector-button.tui-is-checked .tui-ico-date {
+  background-position: 0 50%;
+}
+
+// toast pagination
+.tui-pagination {
+  $border-radius: 3px;
+
+  .tui-page-btn {
+    height: 14px; // cause padding
+    border: 0 none;
+    border-radius: $border-radius;
+    color: $color-text-default;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: transparent;
+      color: $color-primary;
+      transition: all 0.3s ease;
+    }
+
+    &.tui-first-child.tui-is-selected,
+    &.tui-last-child.tui-is-selected {
+      border: 0 none;
+    }
+
+    &.tui-is-selected,
+    &.tui-is-selected:hover,
+    &strong {
+      background-color: $color-primary;
+      color: $color-light;
+    }
+
+    &.tui-first,
+    &.tui-last,
+    &.tui-next,
+    &.tui-next-is-ellip,
+    &.tui-prev,
+    &.tui-prev-is-ellip {
+      width: 26px;
+      height: 26px;
+      border: 1px solid $color-border-form;
+      border-radius: $border-radius;
+      background-color: $color-light;
+    }
+
+    &.tui-next-is-ellip {
+      margin-left: 2px;
+    }
+    &.tui-prev-is-ellip {
+      margin-right: 2px;
+    }
+
+    .tui-ico-prev {
+      @include icon-only('arrow-single.png', 12px);
+    }
+    .tui-ico-first {
+      @include icon-only('arrow-double.png', 12px);
+    }
+    .tui-ico-next {
+      @include icon-only('arrow-single.png', 12px);
+      transform: rotate(180deg);
+    }
+    .tui-ico-last {
+      @include icon-only('arrow-double.png', 12px);
+      transform: rotate(180deg);
+    }
+
+    &.tui-is-disabled > * {
+      opacity: 0.15;
+    }
+  }
+
+  .tui-first + .tui-prev,
+  .tui-next + .tui-last {
+    margin-left: 2px;
+    border: 1px solid $color-border-form;
+  }
+}
+
+// toast Grid
+.tui-grid-container {
+  color: $color-text-default;
+  font: {
+    size: 1rem;
+    family: 'NanumGothic', 'Malgun Gothic', sans-serif;
+  }
+
+  input,
+  p,
+  textarea {
+    color: $color-text-default;
+    font: {
+      size: 1rem;
+      family: 'NanumGothic', 'Malgun Gothic', sans-serif;
+    }
+  }
+
+  .tui-grid-body-area {
+    background-color: $color-body-bg;
+    tr {
+      position: relative;
+      &:hover {
+        background-color: #e9edfb;
+        .tui-grid-cell:first-child {
+          &::before {
+            @include pseudo-before;
+            top: 0;
+            left: 0;
+            width: 0.286rem; // 4px
+            height: 100%;
+            background-color: $color-primary;
+            border: {
+              top-right-radius: $border-radius;
+              bottom-right-radius: $border-radius;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tui-grid-layer-state {
+    background-color: transparent;
+    p {
+      color: $color-text-default;
+      font-family: inherit;
+    }
+  }
+
+  .tui-grid-layer-editing {
+    padding: 0 20px;
+    border: 0 none;
+    background: transparent;
+    &.tui-grid-cell-content-editor {
+      input {
+        border-color: $color-primary;
+      }
+    }
+  }
+
+  input[type='text'],
+  select {
+    @include form-style;
+
+    &:focus,
+    &:active,
+    &.focus {
+      border-color: $color-primary;
+    }
+    &:disabled {
+      border-color: $color-border-form;
+      background-color: #eeeeef;
+      color: #848485;
+    }
+    &.success {
+      border-color: $color-success;
+    }
+    &.error {
+      border-color: $color-error;
+      color: $color-error;
+    }
+  }
+
+  // tui-select
+  .tui-select-box {
+    width: calc(100% - 31px);
+    .tui-select-box-input {
+      @include form-style;
+      height: 30px;
+      color: $color-text-default;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.tui-select-box-open {
+        border-color: $color-primary;
+      }
+
+      .tui-select-box-placeholder {
+        font-size: 0.929rem; // 13px
+        line-height: 1;
+      }
+      .tui-select-box-icon {
+        position: relative;
+        background: transparent;
+        width: 0.857em;
+        height: 0.857em;
+        &::before {
+          $size: 0.429em; // 6px
+          @include pseudo-before;
+          top: calc(50% - (#{$size} / 2));
+          right: calc(#{$size} / 2);
+          width: $size;
+          height: $size;
+          border: {
+            width: 0.077em 0.077em 0 0; // 1px
+            style: solid;
+            color: $color-deep;
+          }
+          transform: rotate(135deg);
+        }
+      }
+    }
+    .tui-select-box-dropdown {
+      padding: {
+        top: 0.571em; // 8px
+        bottom: 0.571em; // 8px
+      }
+      border: {
+        color: $color-border-form;
+        radius: $border-radius;
+      }
+      box-shadow: $box-shadow;
+
+      .tui-select-box-item {
+        position: relative;
+        height: auto;
+        line-height: inherit;
+        padding: 0.571em 1.429em 0.571em 0.857em; // 8px 20px 8px 12px
+        color: #848485;
+
+        $check-height: 0.714rem; // 10px
+        $check-width: 0.429rem; // 6px
+
+        &::after {
+          @include pseudo-before;
+          top: 1.071rem; // 15px
+          right: 1.286rem; // 18px
+          width: $check-width;
+          height: $check-height;
+          border: {
+            right: 0.143rem solid $color-light; // 2px
+            top: 0.143rem solid $color-light;
+            color: $color-primary;
+            radius: 0.179rem; // 2.5px
+          }
+          transform-origin: left top;
+          opacity: 0;
+        }
+
+        &:hover::after {
+          animation: checkmark 0.8s ease 1 forwards;
+          transform: scaleX(-1) rotate(135deg);
+        }
+
+        &.tui-select-box-selected {
+          background: transparent;
+          color: $color-text-default;
+        }
+
+        &.tui-select-box-highlight {
+          background: rgba(75, 116, 255, 0.05);
+        }
+      }
+    }
+  }
+  .tui-grid-editor-select-box-layer {
+    margin-top: 1px;
+  }
+
+// scrollbar
+  ::-webkit-scrollbar {
+    &-thumb {
+      border-radius: $border-radius-box; // 8px
+    }
+    &-track {
+      border: 0 none;
+      border-left: 1px solid #e8e8e8;
+      background: #fafafa;
+    }
+  }
+  .tui-grid-scrollbar-right-top,
+  .tui-grid-scrollbar-right-bottom,
+  .tui-grid-scrollbar-frozen-border {
+    background-color: #fafafa;
+  }
+  .tui-grid-scrollbar-right-top {
+    border: 0 none;
+    background-color: $color-grid-header;
+    &::before {
+      @include pseudo-before;
+      top: 0;
+      left: -1px;
+      width: 1px;
+      height: 100%;
+      background-color: $color-grid-header;
+    }
+  }
+  .tui-grid-scrollbar-right-bottom {
+    border: {
+      top: 0 none;
+      left: 0 none;
+    }
+  }
+  .tui-grid-scrollbar-y-inner-border {
+    background-color: transparent;
+  }
+  //scrollbar
+}
+
+.tui-grid-content-area {
+  .tui-grid-border-line-top {
+    border: 0 none;
+  }
+  .tui-grid-header-area {
+    border: 0 none;
+    font-size: 0.929rem; // 13px
+    .tui-grid-table {
+      border-top-style: hidden;
+    }
+  }
+}
+
+.tui-grid-table {
+  tbody {
+    tr:last-child {
+      .tui-grid-cell {
+        border-bottom: 0;
+      }
+    }
+  }
+  .tui-grid-cell {
+    border-color: $color-border-form;
+    border-left-width: 1px;
+    background-color: transparent;
+    color: $color-text-default;
+    &.tui-grid-cell-header {
+      border-bottom: 0 none;
+      border-color: $color-light;
+      background-color: $color-grid-header;
+    }
+  }
+}
+
+.tui-grid-cell,
+.tui-grid-cell-has-input {
+  a,
+  button {
+    padding: 4px 5px;
+  }
+}
+
+// tippy tooltip
+[data-tippy-root] {
+  .tippy-box {
+    border-color: #cccccf;
+    color: #202020;
+    font-size: 0.929rem; // 13px
+    line-height: 1.62;
+
+    &[data-theme~='light-border'] {
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+      &[data-placement^=bottom]>.tippy-arrow:after {
+        border-bottom-color: #cccccf;
+      }
+    }
+    .tippy-content {
+      padding: 1.231em; // 16px
+    }
+  }
+}
+

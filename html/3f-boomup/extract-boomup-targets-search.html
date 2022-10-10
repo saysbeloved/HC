@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - 붐업 대상자 추출</title>
+    <script defer src="./../../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../../assets/scripts/jquery-ui.min.js"></script>
+
+    <script type="module">
+      import './../../assets/scripts/forms.js';
+      import { tooltip } from './../../assets/scripts/tooltip.js';
+      tooltip(
+        '#tooltip-classify',
+        '구분이란?<br>구분에 대한 설명입니다.',
+        true
+      );
+      tooltip(
+        '#tooltip-contents',
+        '콘텐츠란?<br>콘텐츠에 대한 설명입니다.',
+        true
+      );
+      tooltip(
+        '#tooltip-purpose',
+        '붐업 목적이란?<br>신청 유도와 이용 유도 중<br>선택해 주세요.',
+        true
+      );
+      tooltip(
+        '#tooltip-channel',
+        '대상 채널이란?<br>대상 채널에 대한 설명입니다.',
+        true
+      );
+      tooltip(
+        '#tooltip-amount',
+        '발송 물량이란?<br>발송 물량에 대한 설명입니다.',
+        true
+      );
+
+      // selected script
+      $('.category tr').click(function () {
+        $('.category tr').removeClass('selected');
+        $('.category').removeClass('selected');
+        const parent = $(this).closest('.category');
+        $(this).addClass('selected');
+        parent.addClass('selected');
+      });
+    </script>
+
+    <link rel="stylesheet" href="./../../assets/styles/style.css" />
+  </head>
+
+  <body class="extract-boomup-targets">
+    <!-- header -->
+    <header>
+      <h1><a href="./../../html/index.html">3층 마케팅 자동화</a></h1>
+      <nav>
+        <ul class="menu">
+          <li>
+            <a href="./../../html/3f-gift/closing-rules.html">3층 선물</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-gift/closing-rules.html"
+                      >자동마감 룰 등록</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="current">
+            <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+              >3층 붐업</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li class="current">
+                    <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+                      >붐업 대상자 추출</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/mypage/boomup-targets.html">마이 페이지</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/mypage/boomup-targets.html"
+                      >붐업 대상자 내역</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./../../html/mypage/accounts.html">계정 관리</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/dashboard/3f-gift-states.html"
+              >성과 대시보드</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/dashboard/3f-gift-states.html"
+                      >3층 선물 현황</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- sub-menu background 처리 -->
+      <div class="sub-menu-bg">
+        <div></div>
+      </div>
+      <!-- //sub-menu background 처리 -->
+      <div class="user">
+        <ul class="user-info">
+          <li class="user-info-name">김*희 님</li>
+          <li class="user-info-time">00분 00초</li>
+        </ul>
+        <button type="button" class="btn logout">로그아웃</button>
+      </div>
+    </header>
+    <!-- //header -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb">
+      <ol>
+        <li>
+          <a href="./../../html/index.html" title="Home"><span>홈</span></a>
+        </li>
+        <li>
+          <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+            ><span>3층 붐업</span></a
+          >
+        </li>
+        <li>붐업 대상자 추출</li>
+      </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- section -->
+    <section>
+      <!-- filter bar -->
+      <div class="filter-bar">
+        <div class="contents-type">
+          <select name="type" id="type" class="form-select">
+            <option value="id" selected>콘텐츠 ID</option>
+            <option value="name">콘텐츠명</option>
+          </select>
+        </div>
+        <input
+          type="text"
+          id="search"
+          class="contents-search"
+          placeholder="검색"
+          value="롯데"
+        />
+        <div class="contents-all">
+          <label for="all-contents" class="checkbox">
+            <input type="checkbox" name="all-contents" id="all-contents" />
+            <span>전체 콘텐츠 대상</span>
+          </label>
+        </div>
+      </div>
+      <!-- //filter bar -->
+
+      <!-- side-panel -->
+      <div class="side-panel">
+        <!-- classify & contents-list -->
+        <div class="contents">
+          <!-- title -->
+          <div class="title-area">
+            <div class="classify">
+              <span class="title">구분</span>
+              <div class="info" id="tooltip-classify">
+                <span>information</span>
+              </div>
+            </div>
+            <div class="contents-list">
+              <span class="title">콘텐츠</span>
+              <div class="info" id="tooltip-contents">
+                <span>information</span>
+              </div>
+            </div>
+          </div>
+          <!-- //title -->
+          <div class="contents-area">
+            <!-- 3ma -->
+            <div class="discount-3ma category">
+              <div class="classify">
+                <span class="title">3MA 청구 할인</span>
+              </div>
+              <!-- contents-list -->
+              <div class="contents-list">
+                <!-- table -->
+                <table class="pure">
+                  <caption>
+                    3MA 청구 할인 콘텐츠 리스트
+                  </caption>
+                  <tbody>
+                    <tr>
+                      <td>(80252050255) EO_청구할인_롯데홈쇼핑_6월</td>
+                    </tr>
+                    <tr>
+                      <td>(80252050255) EO_청구할인_롯데_6월</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- //table -->
+              </div>
+              <!-- //contents-list -->
+            </div>
+            <!-- //3ma -->
+            <!-- etc -->
+            <div class="etc category">
+              <div class="classify"><span class="title">기타</span></div>
+              <!-- contents-list -->
+              <div class="contents-list">
+                <!-- table -->
+                <table class="pure">
+                  <caption>
+                    기타 콘텐츠 리스트
+                  </caption>
+                  <tbody>
+                    <tr>
+                      <td>(80252050267) EO_난수쿠폰_롯데백화점_6월</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- //table -->
+              </div>
+              <!-- //contents-list -->
+            </div>
+            <!-- //etc -->
+          </div>
+        </div>
+        <!-- //classify & contents-list -->
+
+        <!-- setting -->
+        <div class="action">
+          <div class="title-area">
+            <span class="title">설정하기</span>
+          </div>
+          <div class="set-area">
+            <!-- purpose -->
+            <div class="purpose">
+              <div class="title-area">
+                <span class="title">붐업 목적</span>
+                <div class="info" id="tooltip-purpose">
+                  <span>information</span>
+                </div>
+              </div>
+              <div class="inline-group-box checkbox-btn-box">
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="purpose"
+                  id="request"
+                  autocomplete="off"
+                />
+                <label class="btn checkbox-btn" for="request">신청 유도</label>
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="purpose"
+                  id="use"
+                  autocomplete="off"
+                />
+                <label class="btn checkbox-btn" for="use">이용 유도</label>
+              </div>
+            </div>
+            <!-- //purpose -->
+
+            <!-- channel -->
+            <div class="channel">
+              <div class="title-area">
+                <span class="title">대상 채널</span>
+                <div class="info" id="tooltip-channel">
+                  <span>information</span>
+                </div>
+              </div>
+              <div class="inline-group-box checkbox-btn-box">
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="channel"
+                  id="lms"
+                  autocomplete="off"
+                />
+                <label class="btn checkbox-btn" for="lms">LMS</label>
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  name="channel"
+                  id="app"
+                  autocomplete="off"
+                />
+                <label class="btn checkbox-btn" for="app">App Push</label>
+              </div>
+            </div>
+            <!-- //channel -->
+
+            <!-- amount -->
+            <div class="amount">
+              <div class="title-area">
+                <span class="title">발송 물량</span>
+                <div class="info" id="tooltip-amount">
+                  <span>information</span>
+                </div>
+              </div>
+              <div class="amount-input">
+                <input id="amount" type="number" placeholder="100~300,000" />
+              </div>
+            </div>
+            <!-- //amount -->
+
+            <!-- buttons -->
+            <div class="btn-box inline-group-box align-right">
+              <a href="./../popups/popup-extract-targets.html">
+                <button class="btn icon-with-24 generate">생성</button>
+              </a>
+            </div>
+            <!-- //buttons -->
+          </div>
+        </div>
+        <!-- //setting -->
+      </div>
+      <!-- //side-panel -->
+
+      <!-- content-panel -->
+      <div class="content-panel">
+        <!-- calculations -->
+        <div class="calculations">
+          <!-- tools -->
+          <div class="tools">
+            <span>* 대상 회원수(명)</span>
+            <!-- buttons -->
+            <div class="btn-box inline-group-box align-right">
+              <button class="btn icon-with-24 reset">초기화</button>
+            </div>
+            <!-- //buttons -->
+          </div>
+          <!-- //tools -->
+
+          <ul>
+            <!-- contents -->
+            <li>
+              <label>콘텐츠</label>
+              <span class="number">305,846<span class="person">명</span></span>
+            </li>
+            <!-- //contents -->
+            <!-- purpose -->
+            <li>
+              <label>붐업 목적</label>
+              <span class="number">48,240<span class="person">명</span></span>
+            </li>
+            <!-- //purpose -->
+            <!-- channel -->
+            <li>
+              <label>대상 채널</label>
+              <span class="number">25,047<span class="person">명</span></span>
+            </li>
+            <!-- //channel -->
+          </ul>
+
+          <!-- finished -->
+          <div class="finished">
+            <span class="calculated"
+              >20,000명<span class="finished-text">(산출 완료)</span></span
+            >
+          </div>
+          <!-- //finished -->
+        </div>
+        <!-- //calculations -->
+
+        <!-- chart -->
+        <div class="chart">
+          <div>그래프 영역</div>
+        </div>
+        <!-- //chart -->
+      </div>
+      <!-- //content-panel -->
+    </section>
+    <!-- //section -->
+  </body>
+</html>

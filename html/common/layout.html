@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - Layout</title>
+    <script defer src="./../../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../../assets/scripts/jquery-ui.min.js"></script>
+
+    <script type="module">
+      import './../../assets/scripts/tui-date-picker.min.js';
+      import {
+        renderGrid,
+        CustomGridInputCell,
+        CustomGridSelectCell,
+        CustomGridAnchorCell,
+      } from './../../assets/scripts/grid.js';
+      import {
+        renderDatePicker,
+        renderDateRangePicker,
+      } from './../../assets/scripts/forms.js';
+
+      {
+        const data = Array.from({ length: 15 }, (v, i) => ({
+          num: i + 1,
+          code: '505077',
+          subject: '써브웨이 여의도 KBS본관점',
+          benefits: '청구 할인',
+          criteria: '정액',
+          dateStart: '2021-07-01',
+          dateEnd: '2021-07-01',
+          endType: '수혜',
+          endCriteria: '99999.99',
+          register: 'July1234',
+          registerTime: '2022-07-12 13:08:24',
+        }));
+
+        renderGrid('grid', {
+          data,
+          header: {
+            height: 36,
+          },
+          columns: [
+            { name: 'num', header: 'No', width: 100, align: 'center' },
+            {
+              name: 'code',
+              header: '가맹점 조건 코드',
+              type: 'number',
+              width: 140,
+              align: 'center',
+            },
+            {
+              name: 'subject',
+              header: '가맹점 조건 내용',
+              minWidth: 230,
+              align: 'center',
+              renderer: {
+                type: CustomGridAnchorCell,
+                options: {
+                  linker: (row) =>
+                    `../3f-gift/closing-rule-detail.html?id=${row.num}`,
+                },
+              },
+            },
+            {
+              name: 'benefits',
+              header: '오퍼 혜택',
+              width: 128,
+              align: 'center',
+            },
+            {
+              name: 'criteria',
+              header: '적용 기준',
+              width: 128,
+              align: 'center',
+            },
+            {
+              name: 'dateStart',
+              header: '적용 시작일',
+              width: 130,
+              align: 'center',
+            },
+            {
+              name: 'dateEnd',
+              header: '적용 종료일',
+              width: 130,
+              align: 'center',
+            },
+            {
+              name: 'endType',
+              header: '마감 구분',
+              width: 130,
+              align: 'center',
+            },
+            {
+              name: 'endCriteria',
+              header: '마감 기준(건, %)',
+              width: 130,
+              align: 'center',
+            },
+            { name: 'register', header: '등록자', width: 130, align: 'center' },
+            {
+              name: 'registerTime',
+              header: '등록 일시',
+              width: 160,
+              align: 'center',
+            },
+          ],
+        });
+
+        // renderDatePicker('date-picker1', { date: new Date('2022-07-01') });
+        // renderDatePicker('date-picker2', { date: new Date() });
+
+        renderDateRangePicker('date-range-picker1', {
+          date: new Date('2022-07-01'),
+        });
+      }
+    </script>
+
+    <link rel="stylesheet" href="./../../assets/styles/style.css" />
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <h1><a href="./../../html/index.html">3층 마케팅 자동화</a></h1>
+      <nav>
+        <ul class="menu">
+          <li class="current">
+            <a href="./../../html/3f-gift/closing-rules.html">3층 선물</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-gift/closing-rules.html"
+                      >자동마감 룰 등록</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+              >3층 붐업</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+                      >붐업 대상자 추출</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/mypage/boomup-targets.html">마이 페이지</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/mypage/boomup-targets.html"
+                      >붐업 대상자 내역</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./../../html/mypage/accounts.html">계정 관리</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/dashboard/3f-gift-states.html"
+              >성과 대시보드</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/dashboard/3f-gift-states.html"
+                      >3층 선물 현황</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- sub-menu background 처리 -->
+      <div class="sub-menu-bg">
+        <div></div>
+      </div>
+      <!-- //sub-menu background 처리 -->
+      <div class="user">
+        <ul class="user-info">
+          <li class="user-info-name">김*희 님</li>
+          <li class="user-info-time">00분 00초</li>
+        </ul>
+        <button type="button" class="btn logout">로그아웃</button>
+      </div>
+    </header>
+    <!-- //header -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb">
+      <ol>
+        <li>
+          <a href="./../../html/index.html" title="Home"><span>홈</span></a>
+        </li>
+        <li>
+          <a href="#"><span>1 Depth</span></a>
+        </li>
+        <li>
+          <a href="#"><span>2 Depth</span></a>
+        </li>
+        <li>3 Depth</li>
+      </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- section -->
+    <section>
+      <h2>페이지 타이틀</h2>
+      <!-- search-box -->
+      <div class="search-box">
+        <ul>
+          <li class="col-4">
+            <label for="code">검색조건 예시1</label>
+            <input id="code" type="text" placeholder="전체입력" />
+          </li>
+          <li class="col-4">
+            <label for="subject">검색조건 예시2</label>
+            <input id="subject" type="text" placeholder="2글자 이상 입력" />
+          </li>
+          <li class="col-4">
+            <label for="offer">검색조건 예시3</label>
+            <select id="offer" name="offer" class="form-select">
+              <option selected>전체</option>
+              <option value="1">청구 할인</option>
+              <option value="2">캐쉬백</option>
+            </select>
+          </li>
+          <li class="col-4">
+            <label for="hasClosing">검색조건 예시4</label>
+            <select id="hasClosing" class="form-select">
+              <option selected>전체</option>
+              <option value="yes">Y</option>
+              <option value="no">N</option>
+            </select>
+          </li>
+          <li class="flex-grow">
+            <label>검색조건 일시</label>
+            <div class="inline-group-box radio-toggle-box">
+              <input
+                type="radio"
+                class="radio"
+                name="period"
+                id="1month"
+                autocomplete="off"
+                checked
+              />
+              <label class="btn radio-toggle" for="1month">1개월</label>
+
+              <input
+                type="radio"
+                class="radio"
+                name="period"
+                id="3month"
+                autocomplete="off"
+              />
+              <label class="btn radio-toggle" for="3month">3개월</label>
+
+              <input
+                type="radio"
+                class="radio"
+                name="period"
+                id="6month"
+                autocomplete="off"
+              />
+              <label class="btn radio-toggle" for="6month">6개월</label>
+            </div>
+            <!-- date-picker -->
+            <!-- <div id="date-picker1">
+              <div
+                class="tui-datepicker-input tui-datetime-input tui-has-focus"
+              >
+                <input
+                  type="text"
+                  class="datepicker-input"
+                  aria-label="Date-Time"
+                />
+                <span class="tui-ico-date"></span>
+              </div>
+              <div class="wrapper" style="margin-top: -1px"></div>
+            </div>
+            <span class="term">-</span>
+            <div id="date-picker2">
+              <div
+                class="tui-datepicker-input tui-datetime-input tui-has-focus"
+              >
+                <input
+                  type="text"
+                  class="datepicker-input"
+                  id="datepicker-input"
+                  aria-label="Date-Time"
+                />
+                <span class="tui-ico-date"></span>
+              </div>
+              <div class="wrapper" style="margin-top: -1px"></div>
+            </div> -->
+            <!-- //date-picker -->
+
+            <!-- date-range-picker -->
+            <div id="date-range-picker1" class="date-picker">
+              <div
+                class="tui-datepicker-input tui-datetime-input tui-has-focus"
+              >
+                <input
+                  class="startpicker-input"
+                  type="text"
+                  aria-label="Date"
+                />
+                <span class="tui-ico-date start"></span>
+                <div
+                  class="startpicker-container"
+                  style="margin-left: -1px"
+                ></div>
+              </div>
+              <span class="term">-</span>
+              <div
+                class="tui-datepicker-input tui-datetime-input tui-has-focus"
+              >
+                <input class="endpicker-input" type="text" aria-label="Date" />
+                <span class="tui-ico-date end"></span>
+                <div
+                  class="endpicker-container"
+                  style="margin-left: -1px"
+                ></div>
+              </div>
+            </div>
+            <!-- //date-range-picker -->
+          </li>
+          <li class="tools">
+            <button class="btn icon-with-24 search">조회</button>
+          </li>
+        </ul>
+      </div>
+      <!-- //search-box -->
+
+      <!-- grid-area -->
+      <div class="grid-area">
+        <div class="grid-area-header">
+          <div class="grid-area-title">
+            <h3>그리드 타이틀</h3>
+            <span class="total">(전체 <span class="num">1234</span>개)</span>
+          </div>
+
+          <!-- grid-buttons -->
+          <div class="inline-group-box">
+            <button class="btn outline icon-with-24 setting">
+              설정 버튼 예시
+            </button>
+            <button class="btn outline icon-with-24 download">
+              다운로드 버튼 예시
+            </button>
+          </div>
+          <!-- //grid-buttons -->
+        </div>
+        <div id="grid"></div>
+      </div>
+      <!-- //grid-area -->
+    </section>
+    <!-- //section -->
+  </body>
+</html>

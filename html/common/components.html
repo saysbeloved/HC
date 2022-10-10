@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - Components</title>
+    <script defer src="./../../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../../assets/scripts/jquery-ui.min.js"></script>
+    <script defer src="./../../assets/scripts/tui-date-picker.min.js"></script>
+    <script defer src="./../../assets/scripts/tui-pagination.min.js"></script>
+    <script defer src="./../../assets/scripts/tui-grid.min.js"></script>
+    <script type="module">
+      import './../../assets/scripts/forms.js';
+    </script>
+
+    <link rel="stylesheet" href="./../../assets/styles/style.css" />
+    <style>
+      section {
+        margin-top: 0;
+      }
+      section > div {
+        display: flex;
+        flex-direction: column;
+        margin: 30px 0;
+      }
+      select,
+      input[type='text'],
+      .form-align {
+        display: inline-block;
+        width: 150px;
+      }
+      .form-align + .form-align,
+      input[type='text'] + input[type='text'] {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <!-- search-box -->
+      <div class="search-box">검색 박스 / 카드</div>
+      <!-- //search-box -->
+      <div>
+        <!-- button style -->
+        <div class="inline-group-box btns-box">
+          <button class="btn">기본 버튼</button>
+          <button class="btn" disabled>기본 disabled</button>
+          <button class="btn outline">아웃라인 버튼</button>
+          <button class="btn outline" disabled>아웃라인 disabled</button>
+          <button class="btn round">라운드 버튼</button>
+          <button class="btn round" disabled>라운드 버튼</button>
+        </div>
+        <!-- // button style -->
+      </div>
+
+      <div>
+        <!-- button style -->
+        <div class="inline-group-box btns-box">
+          <button class="btn outline icon-with-24 download">
+            아이콘 24px 버튼
+          </button>
+          <button class="btn outline icon-with-24 download" disabled>
+            아이콘 24px 버튼
+          </button>
+        </div>
+        <!-- // button style -->
+      </div>
+
+      <div>
+        <!-- radio-toggle in search-box -->
+        <div class="inline-group-box radio-toggle-box">
+          <input
+            type="radio"
+            class="radio"
+            name="period"
+            id="1month"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn radio-toggle" for="1month">1개월</label>
+
+          <input
+            type="radio"
+            class="radio"
+            name="period"
+            id="3month"
+            autocomplete="off"
+          />
+          <label class="btn radio-toggle" for="3month">3개월</label>
+
+          <input
+            type="radio"
+            class="radio"
+            name="period"
+            id="6month"
+            autocomplete="off"
+          />
+          <label class="btn radio-toggle" for="6month">6개월</label>
+        </div>
+        <!-- // radio-toggle in search-box -->
+      </div>
+
+      <div>
+        <!-- radio-default -->
+        <div class="form-box">
+          <label class="radio" for="radio-sample1">
+            <input type="radio" name="sample" id="radio-sample1" checked />
+            <span>라디오버튼1</span>
+          </label>
+          <label class="radio" for="radio-sample2">
+            <input type="radio" name="sample" id="radio-sample2" />
+            <span>라디오버튼2</span>
+          </label>
+          <label class="radio" for="radio-sample3">
+            <input type="radio" name="sample" id="radio-sample3" />
+            <span>라디오버튼3</span>
+          </label>
+          <label class="radio" for="radio-sample4">
+            <input type="radio" name="sample" id="radio-sample4" disabled />
+            <span>disabled</span>
+          </label>
+        </div>
+        <!-- //radio-default -->
+      </div>
+
+      <div>
+        <!-- checkbox-default -->
+        <div class="form-box">
+          <label class="checkbox" for="check-sample1">
+            <input type="checkbox" name="check" id="check-sample1" checked />
+            <span>체크박스1</span>
+          </label>
+          <label class="checkbox" for="check-sample2">
+            <input type="checkbox" name="check" id="check-sample2" />
+            <span>체크박스2</span>
+          </label>
+          <label class="checkbox" for="check-sample3">
+            <input type="checkbox" name="check" id="check-sample3" />
+            <span>체크박스3</span>
+          </label>
+          <label class="checkbox" for="check-sample4">
+            <input type="checkbox" name="check" id="check-sample4" disabled />
+            <span>disabled</span>
+          </label>
+          <label class="checkbox">
+            <input
+              type="checkbox"
+              name="check"
+              id="check-sample5"
+              disabled
+              checked
+            />
+            <span for="check-sample5">disable+checked</span>
+          </label>
+        </div>
+        <!-- //checkbox-default -->
+      </div>
+
+      <div>
+        <!-- checkbox-btn -->
+        <div class="inline-group-box checkbox-btn-box">
+          <input
+            type="checkbox"
+            class="checkbox"
+            name="purpose"
+            id="check-btn-sample1"
+            autocomplete="off"
+          />
+          <label class="btn checkbox-btn" for="check-btn-sample1" checked
+            >체크버튼1</label
+          >
+          <input
+            type="checkbox"
+            class="checkbox"
+            name="purpose"
+            id="check-btn-sample2"
+            autocomplete="off"
+          />
+          <label class="btn checkbox-btn" for="check-btn-sample2"
+            >체크버튼2</label
+          >
+        </div>
+        <!-- //checkbox-btn -->
+      </div>
+
+      <div>
+        <!-- login checkbox -->
+        <div style="display: none">
+          <label class="checkbox-special">
+            <input type="checkbox" name="" id="" />
+            <i class="check"></i>
+            <span>MPASS</span>
+          </label>
+        </div>
+        <!-- //login checkbox -->
+      </div>
+
+      <div>
+        <div>
+          <div class="form-align">
+            <!-- selectbox -->
+            <select id="offer" name="offer" class="form-select">
+              <option selected>전체</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <!-- //selectbox -->
+          </div>
+          <div class="form-align">
+            <!-- selectbox -->
+            <select id="offer" name="offer" class="form-select-small">
+              <option selected>전체</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <!-- //selectbox -->
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <input type="text" placeholder="인풋박스 기본" />
+          <input type="text" placeholder="disabled" disabled />
+          <input class="success" type="text" placeholder="success" />
+          <input class="error" type="text" placeholder="error" />
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <input class="small" type="text" placeholder="인풋박스 small" />
+          <input class="small" type="text" placeholder="disabled" disabled />
+          <input class="small success" type="text" placeholder="success" />
+          <input class="small error" type="text" placeholder="error" />
+        </div>
+      </div>
+
+      <div>
+        <!-- loading style -->
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 600px;
+          "
+        >
+          <span class="loading-circle-track"></span>
+          <span class="loading-circle"></span>
+          <span class="loading-dots"></span>
+        </div>
+        <!-- //loading style -->
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+.modal-wrapper {
+  @include flex-center;
+}
+
+.modal {
+  @include flex-column;
+  min-width: 25.714rem; // 360px
+  min-height: 12.857rem; // 180px;
+  padding: $global-space; // 40px
+  border-radius: $border-radius-box;
+  background-color: $color-light;
+  box-shadow: $box-shadow-modal;
+  animation: slide-in-down 0.5s ease;
+
+  &.loading {
+    justify-content: center;
+
+    .loading-description {
+      padding-top: 1.333em; // 20px
+      font-size: 1.071rem; // 15px
+    }
+  }
+
+  .btn {
+    padding: {
+      left: 2.286em; // 32px
+      right: 2.286em;
+    }
+  }
+  .content {
+    flex-grow: 1;
+    margin-bottom: $global-space;
+    font-size: 1.071rem; // 15px
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  // MPASS
+  &.mpass {
+    align-items: stretch;
+    width: 53.429rem; // 748px
+    height: 20.429rem; // 286px
+
+    .title {
+      margin-bottom: 1.778em; // 32px
+      padding-bottom: 0.833em; // 15px
+      border-bottom: 1px solid #d2d2d7;
+      font: {
+        family: 'Youandi';
+        weight: 700;
+        size: 1.286em; // 18px
+      }
+      text-align: center;
+    }
+    .content {
+      margin-bottom: 0;
+      text-align: left;
+      .sec-count {
+        color: $color-primary;
+      }
+      .text-box {
+        @include flex-between;
+      }
+      #progressbar {
+        margin-top: 0.8em; // 12px
+      }
+    }
+    .inline-group-box {
+      text-align: center;
+      .btn.outline {
+        width: 12.143rem; // 170px
+        height: 3.429rem; // 48px
+        border-color: $color-dark;
+        font: {
+          family: 'Youandi';
+          size: 1.071rem; // 15px
+          weight: 300;
+        }
+      }
+    }
+  }
+}

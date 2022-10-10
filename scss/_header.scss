@@ -1,0 +1,357 @@
+header {
+  @include flex-between;
+  $sub-menu-height: 12.857em; // 180px
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $menu-height;
+  background-color: $header-color;
+  padding: {
+    right: $global-space;
+    left: $global-space;
+  }
+
+  color: $color-light;
+  font-family: 'Youandi';
+  line-height: 1;
+
+  a {
+    color: $color-light;
+  }
+
+  h1 {
+    height: 100%;
+    padding-right: 8em; // 160px
+    font-size: 1.429rem; // 20px
+    line-height: 1;
+
+    a {
+      @include alink-flex-box;
+      white-space: nowrap;
+    }
+  }
+  nav {
+    flex-grow: 1;
+    height: 100%;
+
+    &:hover {
+      .sub-menu-box {
+        div {
+          height: 10em; // 18px에 180px
+          .sub-menu {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+
+      + .sub-menu-bg {
+        div {
+          height: $sub-menu-height;
+        }
+      }
+    }
+  }
+
+  .menu {
+    display: flex;
+    height: 100%;
+
+    > li {
+      flex-shrink: 0;
+      position: relative;
+      padding-right: 8.889em; // 160px
+      font: {
+        size: 1.286rem; // 18px
+        weight: 600;
+      }
+
+      > a {
+        @include alink-flex-box;
+        position: relative;
+      }
+
+      &:hover,
+      &.current {
+        > a {
+          &::before {
+            $size: 0.222em; // 4px
+            @include pseudo-before;
+            left: -5%;
+            bottom: 0;
+            width: 110%;
+            height: $size;
+            border: {
+              top-left-radius: calc(#{$size} / 2);
+              top-right-radius: calc(#{$size} / 2);
+            }
+            background-color: $color-primary;
+            animation: flex-width 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+
+  .sub-menu-box {
+    div {
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 0;
+      transition: height 0.3s ease;
+
+      .sub-menu {
+        padding-top: 2.143rem; // 30px 고정
+        transform: translateY(-100%);
+        transition: all 0.3s ease;
+        opacity: 0;
+
+        li {
+          a {
+            @include alink-flex-box;
+            padding: 0.714rem 0; // 10px 고정
+            color: #fff;
+            font: {
+              size: 0.889em; // 16px
+              weight: 300;
+            }
+            opacity: 0.7;
+            transition: opacity 0.5s ease;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+          &.current {
+            a {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .sub-menu-bg {
+    position: absolute;
+    top: $menu-height;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    div {
+      overflow: hidden;
+      top: 0;
+      width: 100%;
+      height: 0;
+      background-color: rgba(0, 0, 0, 0.9); // #111 = 17, 17, 17
+      transition: height 0.3s ease;
+    }
+  }
+
+  .user {
+    @include flex-between;
+    height: 100%;
+    letter-spacing: 0;
+    cursor: default;
+
+    &-info {
+      @include flex-between;
+      height: 100%;
+
+      li {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        height: 100%;
+        padding-left: 1.714em; // 24px
+
+        &:not(:first-child) {
+          margin-left: 0.571em; // 8px
+        }
+      }
+
+      &-name {
+        @include icon('icon-smile.png', 1.714em);
+      }
+      &-time {
+        @include icon('icon-clock.png', 1.714em);
+      }
+    }
+
+    .btn {
+      flex-shrink: 0;
+      padding: {
+        // 85*30
+        top: 0.577em; // 7px
+        right: 0.769em; // 10px
+        bottom: 0.577em; // 7px
+        left: 2em; // 26px
+      }
+      background-color: #e1e1e4;
+      color: $color-dark;
+      font-size: 0.929rem; // 13px
+
+      &:hover,
+      &:focus {
+        background-color: $color-light;
+      }
+      &.logout {
+        @include icon('icon-logout-16px.png', 1.231em); // 16px
+        margin-left: 1.846em; // 24px
+        background-position-x: 0.615em; // 8px
+      }
+    }
+  }
+
+  z-index: 9999;
+}
+
+.breadcrumb {
+  position: fixed;
+  top: 4.571em;
+  width: 100%;
+  height: 2.929em;
+  padding: {
+    right: $global-space;
+    left: $global-space;
+  }
+  border-bottom: 1px solid $color-border-form;
+  background-color: $color-light;
+  font-family: 'NanumGothic';
+  box-shadow: $drop-shadow;
+
+  ol {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    font-size: 0.929rem; // 13px
+
+    li {
+      a {
+        @include alink-flex-box;
+      }
+
+      &:first-child a {
+        $size: 1.231em;
+        @include icon('icon-home-16px.png', $size);
+        width: $size;
+        height: $size;
+
+        span {
+          @include hidden;
+        }
+      }
+
+      &:not(:first-child) {
+        position: relative;
+        padding-left: 1.077em; // 14px
+
+        &::before {
+          $size: 0.385em; // 5px
+          @include pseudo-before;
+          top: calc(50% - (#{$size} / 2));
+          left: calc(#{$size} / 2);
+          width: $size;
+          height: $size;
+          border: {
+            width: 0.077em 0.077em 0 0; // 1px
+            style: solid;
+            color: #cccccf;
+          }
+          transform: rotate(45deg);
+        }
+      }
+      cursor: default;
+    }
+  }
+  z-index: 99;
+}
+
+@media screen and (min-width: 1320px) and (max-width: 1589.98px) {
+  header {
+    .menu {
+      > li {
+        padding-right: 5.556em; // 100px
+      }
+    }
+  }
+}
+
+@media #{$medium} {
+  // 1160px~1320px
+  header {
+    h1 {
+      padding-right: 5em; // 100px
+      font-size: 1.357rem; // 19px
+    }
+    .menu {
+      > li {
+        padding-right: 4.706em; // 80px
+        font-size: 1.214rem; // 17px
+      }
+    }
+  }
+}
+
+@media #{$small} {
+  // 960px~1160px
+  $global-space: 2.143em; // 30px
+    .breadcrumb {
+      padding: {
+        right: $global-space;
+        left: $global-space;
+      }
+    }
+  header {
+    padding: {
+      right: $global-space;
+      left: $global-space;
+    }
+    h1 {
+      padding-right: 4.444em; // 80px
+      font-size: 1.286rem; // 18px
+    }
+    .menu {
+      > li {
+        padding-right: 3.75em; // 60px
+        font-size: 1.143rem; // 16px
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 999.98px) {
+  // @TODO ~1000px
+  $global-space: 2.143em; // 30px
+    .breadcrumb {
+      padding: {
+        right: $global-space;
+        left: $global-space;
+      }
+    }
+  header {
+    padding: {
+      right: $global-space;
+      left: $global-space;
+    }
+    h1 {
+      padding-right: 3.333em; // 60px
+      font-size: 1.214rem; // 17px
+    }
+    .menu {
+      > li {
+        padding-right: 3.75em; // 60px
+        font-size: 1.143rem; // 16px
+      }
+    }
+    .user-info {
+      li {
+        font-size: 0.929rem; // 13px
+      }
+    }
+  }
+}

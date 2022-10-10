@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - 마감정보 대상카드 관리</title>
+    <script defer src="./../../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../../assets/scripts/jquery-ui.min.js"></script>
+
+    <script type="module">
+      import './../../assets/scripts/tui-date-picker.min.js';
+      import {
+        renderGrid,
+        CustomGridHeaderAddButton,
+        CustomGridButton,
+        CustomGridInputCell,
+      } from './../../assets/scripts/grid.js';
+
+      {
+        const data = Array.from({ length: 20 }, (v, i) => ({
+          action: '',
+          code: '00869',
+          dateStart: '2022-07-01',
+          dateEnd: '2022-08-31',
+          cardName: '현대카드 ZERO(할인형)',
+          used: 'Y',
+        }));
+
+        const grid = renderGrid('grid', {
+          // 행 추가 액션때문에 변수로 선언
+          data,
+          pageOptions: false,
+          bodyHeight: 588,
+          header: {
+            height: 36,
+            complexColumns: [
+              {
+                header: 'action-add',
+                name: 'action-add',
+                childNames: ['action'],
+                hideChildHeaders: true,
+                renderer: CustomGridHeaderAddButton,
+              },
+            ],
+          },
+          columns: [
+            {
+              name: 'action',
+              width: 60,
+              align: 'center',
+              renderer: {
+                type: CustomGridButton,
+                options: {
+                  className: 'icon-only grid-data-delete',
+                  action: (row, key) => {
+                    console.log('remove click', row, key);
+                  },
+                },
+              },
+            },
+            {
+              name: 'code',
+              header: '상품 코드',
+              width: 200,
+              align: 'center',
+              editor: {
+                type: CustomGridInputCell,
+              },
+            },
+            {
+              name: 'dateStart',
+              header: '적용 시작일',
+              width: 250,
+              align: 'center',
+              editor: {
+                type: 'datePicker',
+                options: {
+                  format: 'yyyy-MM-dd',
+                  language: 'ko',
+                },
+              },
+            },
+            {
+              name: 'dateEnd',
+              header: '적용 종료일',
+              width: 250,
+              align: 'center',
+              editor: {
+                type: 'datePicker',
+                options: {
+                  format: 'yyyy-MM-dd',
+                  language: 'ko',
+                },
+              },
+            },
+            {
+              name: 'cardName',
+              header: '상품명',
+              minWidth: 250,
+              align: 'center',
+              editor: {
+                type: CustomGridInputCell,
+              },
+            },
+            {
+              name: 'used',
+              header: '사용 여부',
+              width: 200,
+              align: 'center',
+              editor: {
+                type: 'select',
+                options: {
+                  listItems: [
+                    { text: 'Y', value: 'Y' },
+                    { text: 'N', value: 'N' },
+                  ],
+                },
+              },
+            },
+          ],
+        });
+
+        // 행 추가 액션
+        $('#grid .grid-data-add').click(function () {
+          console.log('add click'); // @TODO
+
+          data.push({
+            action: '',
+            code: '추가된 행',
+            dateStart: '2022-07-01',
+            dateEnd: '2022-08-31',
+            cardName: '현대카드 ZERO(할인형)',
+            used: 'Y',
+          });
+
+          grid.resetData(data);
+        });
+        // //행 추가 액션
+      }
+    </script>
+
+    <link rel="stylesheet" href="./../../assets/styles/style.css" />
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <h1><a href="./../../html/index.html">3층 마케팅 자동화</a></h1>
+      <nav>
+        <ul class="menu">
+          <li class="current">
+            <a href="./../../html/3f-gift/closing-rules.html">3층 선물</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li class="current">
+                    <a href="./../../html/3f-gift/closing-rules.html"
+                      >자동마감 룰 등록</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+              >3층 붐업</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+                      >붐업 대상자 추출</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/mypage/boomup-targets.html">마이 페이지</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/mypage/boomup-targets.html"
+                      >붐업 대상자 내역</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./../../html/mypage/accounts.html">계정 관리</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/dashboard/3f-gift-states.html"
+              >성과 대시보드</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/dashboard/3f-gift-states.html"
+                      >3층 선물 현황</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- sub-menu background 처리 -->
+      <div class="sub-menu-bg">
+        <div></div>
+      </div>
+      <!-- //sub-menu background 처리 -->
+      <div class="user">
+        <ul class="user-info">
+          <li class="user-info-name">김*희 님</li>
+          <li class="user-info-time">00분 00초</li>
+        </ul>
+        <button type="button" class="btn logout">로그아웃</button>
+      </div>
+    </header>
+    <!-- //header -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb">
+      <ol>
+        <li>
+          <a href="./../../html/index.html" title="Home"><span>홈</span></a>
+        </li>
+        <li>
+          <a href="./../../html/3f-gift/closing-rules.html"
+            ><span>3층 선물</span></a
+          >
+        </li>
+        <li>
+          <a href="./../../html/3f-gift/closing-rules.html"
+            ><span>자동마감 룰 등록</span></a
+          >
+        </li>
+        <li>마감정보 대상카드 관리</li>
+      </ol>
+    </div>
+    <!-- //breadcrumb -->
+    <!-- section -->
+    <section>
+      <h2>마감정보 대상카드 관리</h2>
+      <div class="page-btns">
+        <div class="inline-group-box">
+          <button class="btn icon-with-24 save">저장</button>
+        </div>
+      </div>
+      <!-- grid-area -->
+      <div class="grid-area">
+        <div class="grid-area-header">
+          <div class="grid-area-title">
+            <h3 class="grid-title">마감정보 대상카드</h3>
+            <span class="total">(전체<span class="num">89</span>개)</span>
+          </div>
+        </div>
+        <div id="grid"></div>
+      </div>
+      <!-- //grid-area -->
+    </section>
+    <!-- //section -->
+  </body>
+</html>

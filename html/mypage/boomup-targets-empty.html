@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - 붐업 대상자 내역</title>
+    <script defer src="./../../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../../assets/scripts/jquery-ui.min.js"></script>
+
+    <script type="module">
+      import {
+        renderGrid,
+        CustomGridCheckbox,
+        CustomGridHeaderCheckbox,
+      } from './../../assets/scripts/grid.js';
+
+      tui.Grid.setLanguage('ko', {
+        display: {
+          noData: '생성된 대상자 내역이 없습니다.',
+        },
+      });
+
+      {
+        renderGrid('grid', {
+          data: [],
+          header: {
+            height: 36,
+            complexColumns: [
+              {
+                header: 'check-all',
+                name: 'check-all',
+                childNames: ['checked'],
+                hideChildHeaders: true,
+                renderer: CustomGridHeaderCheckbox,
+              },
+            ],
+          },
+          columns: [
+            {
+              name: 'checked',
+              renderer: {
+                type: CustomGridCheckbox,
+              },
+              width: 60,
+              align: 'center',
+            },
+            {
+              name: 'num',
+              header: 'No',
+              width: 100,
+              align: 'center',
+            },
+            {
+              name: 'listId',
+              header: '리스트 ID',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'contentId',
+              header: '콘텐츠 ID',
+              width: 200,
+              align: 'center',
+            },
+            {
+              name: 'contentName',
+              header: '콘텐츠명',
+              minWidth: 250,
+              align: 'center',
+            },
+            {
+              name: 'boomupPurpose',
+              header: '붐업 목적',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'chanel',
+              header: '대상 채널',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'volume',
+              header: '발송 물량',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'registerDate',
+              header: '등록 일시',
+              width: 150,
+              align: 'center',
+            },
+            {
+              name: 'register',
+              header: '등록자',
+              width: 150,
+              align: 'center',
+            },
+          ],
+        });
+
+        // checkbox 구현
+        $('#grid .grid-check-all').click((ev) => {
+          const { checked = false } = ev.target;
+
+          $('#grid .grid-checkbox').prop('checked', checked);
+        });
+        // //checkbox 구현
+      }
+    </script>
+
+    <link rel="stylesheet" href="./../../assets/styles/style.css" />
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <h1><a href="./../../html/index.html">3층 마케팅 자동화</a></h1>
+      <nav>
+        <ul class="menu">
+          <li>
+            <a href="./../../html/3f-gift/closing-rules.html">3층 선물</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-gift/closing-rules.html"
+                      >자동마감 룰 등록</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+              >3층 붐업</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/3f-boomup/extract-boomup-targets.html"
+                      >붐업 대상자 추출</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="current">
+            <a href="./../../html/mypage/boomup-targets.html">마이 페이지</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li class="current">
+                    <a href="./../../html/mypage/boomup-targets.html"
+                      >붐업 대상자 내역</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./../../html/mypage/accounts.html">계정 관리</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../../html/dashboard/3f-gift-states.html"
+              >성과 대시보드</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../../html/dashboard/3f-gift-states.html"
+                      >3층 선물 현황</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- sub-menu background 처리 -->
+      <div class="sub-menu-bg">
+        <div></div>
+      </div>
+      <!-- //sub-menu background 처리 -->
+      <div class="user">
+        <ul class="user-info">
+          <li class="user-info-name">김*희 님</li>
+          <li class="user-info-time">00분 00초</li>
+        </ul>
+        <button type="button" class="btn logout">로그아웃</button>
+      </div>
+    </header>
+    <!-- //header -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb">
+      <ol>
+        <li>
+          <a href="./../../html/index.html" title="Home"><span>홈</span></a>
+        </li>
+        <li>
+          <a href="./../../html/mypage/boomup-targets.html"
+            ><span>마이 페이지</span></a
+          >
+        </li>
+        <li>붐업 대상자 내역</li>
+      </ol>
+    </div>
+    <!-- //breadcrumb -->
+
+    <!-- section -->
+    <section>
+      <h2>붐업 대상자 내역</h2>
+      <!-- grid-area -->
+      <div class="grid-area">
+        <div class="grid-area-header">
+          <div class="grid-area-title">
+            <h3 class="grid-title">붐업 대상자</h3>
+            <span class="total">(전체<span class="num">0</span>개)</span>
+          </div>
+
+          <!-- grid-buttons -->
+          <div class="inline-group-box">
+            <button class="btn outline icon-with-24 delete">삭제</button>
+          </div>
+          <!-- //grid-buttons -->
+        </div>
+        <div id="grid"></div>
+      </div>
+      <!-- //grid-area -->
+    </section>
+    <!-- //section -->
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA - 로그인</title>
+    <script defer src="./../assets/scripts/jquery-3.6.0.min.js"></script>
+    <script defer src="./../assets/scripts/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="./../assets/styles/style.css" />
+  </head>
+
+  <body class="main">
+    <!-- header -->
+    <header>
+      <h1><a href="#">3층 마케팅 자동화</a></h1>
+      <nav>
+        <ul class="menu">
+          <li>
+            <a href="./../html/3f-gift/closing-rules.html">3층 선물</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../html/3f-gift/closing-rules.html"
+                      >자동마감 룰 등록</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../html/3f-boomup/extract-boomup-targets.html"
+              >3층 붐업</a
+            >
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../html/3f-boomup/extract-boomup-targets.html"
+                      >붐업 대상자 추출</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../html/mypage/boomup-targets.html">마이 페이지</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../html/mypage/boomup-targets.html"
+                      >붐업 대상자 내역</a
+                    >
+                  </li>
+                  <li>
+                    <a href="./../html/mypage/accounts.html">계정 관리</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="./../html/dashboard/3f-gift-states.html">성과 대시보드</a>
+            <div class="sub-menu-box">
+              <div>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="./../html/dashboard/3f-gift-states.html"
+                      >3층 선물 현황</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- sub-menu background 처리 -->
+      <div class="sub-menu-bg">
+        <div></div>
+      </div>
+      <!-- //sub-menu background 처리 -->
+    </header>
+    <!-- //header -->
+
+    <!-- section -->
+    <section>
+      <div class="main-image-panel">
+        <img src="./../assets/images/image-main.png" />
+      </div>
+      <div class="main-content-panel login-content">
+        <div class="login">
+          <h3>3층 마케팅 자동화</h3>
+          <form>
+            <div class="form-box">
+              <ul class="login-input">
+                <li>
+                  <label for="userId">ID</label>
+                  <input id="userId" type="text" placeholder="사번 입력">
+                </li>
+                <li>
+                  <label for="userOtp">OTP</label>
+                  <input id="userOtp" type="text" placeholder="입력">
+                </li>
+              </ul>
+              <div class="login-mpass">
+                <label class="checkbox" for="mpass">
+                  <input id="mpass" type="checkbox" name="mpass">
+                  <span>MPASS</span>
+                </label>
+              </div>
+            </div>
+          </form>
+          <div class="inline-group-box">
+            <button class="btn">로그인</button>
+          </div>
+          <!-- error -->
+          <div class="error-box">
+            <span class="error-message">로그인 정보를 확인하세요. (ID/OTP)</span>
+          </div>
+          <!-- //error -->
+        </div>
+      </div>
+    </section>
+    <!-- //section -->
+  </body>
+</html>
