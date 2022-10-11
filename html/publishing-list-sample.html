@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3MA Publishing List Sample</title>
+    <script src="./../assets/scripts/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./../assets/styles/publishing-list.css" />
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('table > tbody > tr').click(function () {
+          $('table > tbody > tr').removeClass('selected');
+          $(this).addClass('selected');
+        });
+
+        const header = document.querySelector('header');
+        const headerHeight = header.offsetHeight;
+        const goTopBtn = document.getElementById('go-to-top');
+
+        window.onscroll = function () {
+          const windowTop = window.scrollY;
+
+          if (windowTop >= headerHeight) {
+            header.classList.add('drop');
+          } else {
+            header.classList.remove('drop');
+          }
+
+          if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+          ) {
+            goTopBtn.style.display = 'block';
+          } else {
+            goTopBtn.style.display = 'none';
+          }
+        };
+
+        $('#go-to-top').click(() => window.scrollTo(0, 0));
+      });
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <div class="publishing-list-header">
+        <h1><a href="#" title="3MA Publishing List">3MA</a></h1>
+        <h2>3F Marketing Automation</h2>
+      </div>
+    </header>
+
+    <div class="publishing-list">
+      <div class="publishing-list-image">
+        <img
+          src="../assets/images/publishing-list/publishing-list-img.png"
+          alt="3MA Publishing List"
+        />
+      </div>
+      <!-- 01. Common -->
+      <div class="publishing-list-group">
+        <h3>01. Common</h3>
+        <table>
+          <colgroup>
+            <col width="" />
+            <col width="150" />
+            <col width="150" />
+            <col width="20%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Page Subject</th>
+              <th scope="col">Last Updated</th>
+              <th scope="col">State</th>
+              <th scope="col">Remark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="letter-spacing">
+                <a href="common/layout.html" target="_blank">Layout</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="finished">완료</span></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="letter-spacing">
+                <a href="login.html" target="_blank">Login</a>
+              </td>
+              <td class="date">2022-08-17</td>
+              <td class="state"><span class="finished">완료</span></td>
+              <td class="remark">
+                <ul>
+                  <li>
+                    <span class="date">2022-08-03</span> 통합계정 연동 이슈로
+                    수정
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td class="letter-spacing">
+                <a href="login-error.html" target="_blank"
+                  >Login > Error</a
+                >
+              </td>
+              <td class="date">2022-08-17</td>
+              <td class="state"><span class="ongoing">진행중</span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td class="letter-spacing">
+                <a href="common/error.html" target="_blank">Error</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td class="letter-spacing">
+                <a href="#" target="_blank">Dimmed</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td class="letter-spacing">
+                <a href="common/loading-indicator.html" target="_blank">Loading</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td class="letter-spacing">
+                <a href="index.html" target="_blank">Main</a>
+              </td>
+              <td class="date">2022-09-20</td>
+              <td class="state"><span class="modifying">수정중</span></td>
+              <td class="remark">
+                <ul>
+                  <li>
+                    <span class="date">2022-09-08</span> 디자인 변경으로 수정
+                  </li>
+                  <li>
+                    <span class="date">2022-09-13</span> 디자인 변경으로 수정
+                  </li>
+                  <li>
+                    <span class="date">2022-09-20</span> 디자인 변경으로 수정
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- //01. Common -->
+
+      <!-- 02. Pages -->
+      <div class="publishing-list-group">
+        <h3>02. Pages</h3>
+        <table>
+          <colgroup>
+            <col width="100" />
+            <col width="" />
+            <col width="150" />
+            <col width="150" />
+            <col width="20%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="colgroup" colspan="2">Page Subject</th>
+              <th scope="col">Last Updated</th>
+              <th scope="col">State</th>
+              <th scope="col">Remark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">3층 선물</th>
+              <td>
+                <a href="#" target="blank">자동마감 룰 등록</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="finished">완료</span></td>
+              <td class="remark">
+                <ul>
+                  <li>
+                    <span class="highlighter"
+                      ><span class="date">2022-08-08</span> 중요 내용은
+                      형광펜</span
+                    >
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th scope="rowgroup" rowspan="3">3층 붐업</th>
+              <td>
+                <a href="#" target="blank">붐업 대상자 추출</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="ongoing">진행중</span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="blank">붐업 대상자 추출 > 단계</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="blank">붐업 대상자 추출 > 에러</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <th scope="rowgroup" rowspan="3">마이 페이지</th>
+              <td>
+                <a href="#" target="blank">붐업 대상자 내역</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="blank">계정 관리 (Admin권한)</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="blank"
+                  >계정 관리 (Admin권한) > 계정 정보 수정</a
+                >
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <th scope="row">성과 대시보드</th>
+              <td>
+                <a href="#" target="blank">3층 선물 현황</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- //02. Pages -->
+
+      <!-- 03. Pop-ups -->
+      <div class="publishing-list-group">
+        <h3>03. Pop-ups</h3>
+        <table>
+          <colgroup>
+            <col width="" />
+            <col width="150" />
+            <col width="150" />
+            <col width="20%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Page Subject</th>
+              <th scope="col">Last Updated</th>
+              <th scope="col">State</th>
+              <th scope="col">Remark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="#" target="_blank"
+                  >팝업 <span class="letter-spacing">Large</span></a
+                >
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="finished">완료</span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="_blank"
+                  >팝업 <span class="letter-spacing">Small</span></a
+                >
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="finished">완료</span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="_blank"
+                  ><span class="letter-spacing">MPASS</span> 인증 대기</a
+                >
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="ongoing">진행중</span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#" target="_blank">붐업 대상자 추출 진행 여부</a>
+              </td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span class="ongoing">진행중</span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td><a href="#" target="_blank">팝업 제목1</a></td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td><a href="#" target="_blank">팝업 제목2</a></td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td><a href="#" target="_blank">팝업 제목3</a></td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+            <tr>
+              <td><a href="#" target="_blank">팝업 제목4</a></td>
+              <td class="date">2022-07-30</td>
+              <td class="state"><span></span></td>
+              <td class="remark"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- //03. Pop-ups -->
+    </div>
+    <div id="go-to-top">
+      <a title="쓩!">Go to Top</a>
+    </div>
+  </body>
+</html>
